@@ -1,9 +1,13 @@
-const uppy = new Uppy.Core()
-  .use(Uppy.Dashboard, {
+const uppy = new window.Uppy.Core()
+  .use(window.Uppy.Dashboard, {
     inline: true,
-    target: '#drag-drop-area'
+    target: '#drag-drop-area',
+    note: 'Envie até 5 fotos por vez',
+    proudlyDisplayPoweredByUppy: false
   })
-  .use(Uppy.Tus, { endpoint: 'https://tusd.tusdemo.net/files/' });
+  .use(window.Uppy.Tus, {
+    endpoint: 'https://tusd.tusdemo.net/files/' // servidor demo
+  });
 
 uppy.on('complete', (result) => {
   alert('Fotos enviadas com sucesso!');

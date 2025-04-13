@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Envie suas fotos 📸</title>
+  <!-- Estilos do Uppy -->
   <link href="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.css" rel="stylesheet">
+  <!-- Script do Uppy -->
   <script src="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.js"></script>
+  <!-- Estilo Inline -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,8 +27,15 @@
   <h1>Envie suas fotos da festa! 🎉</h1>
   <div id="drag-drop-area"></div>
 
+  <!-- Script Inline -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Verifica se o objeto Uppy está disponível
+      if (typeof Uppy === 'undefined') {
+        console.error('Erro: O objeto Uppy não foi carregado corretamente.');
+        return;
+      }
+
       const uppy = new Uppy({
         debug: true, // Ativa logs no console para depuração
       })

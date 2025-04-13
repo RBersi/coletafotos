@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const uppy = new Uppy.Core()
+  const uppy = new Uppy()
     .use(Uppy.Dashboard, {
       inline: true,
       target: '#drag-drop-area',

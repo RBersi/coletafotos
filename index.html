@@ -11,6 +11,21 @@
   <div id="drag-drop-area"></div>
 
   <script src="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.js"></script>
-  <script src="script.js"></script>
+  <script>
+    const uppy = new window.Uppy.Core()
+      .use(window.Uppy.Dashboard, {
+        inline: true,
+        target: '#drag-drop-area',
+        note: 'Envie até 5 fotos por vez',
+        proudlyDisplayPoweredByUppy: false
+      })
+      .use(window.Uppy.Tus, {
+        endpoint: 'https://tusd.tusdemo.net/files/'
+      });
+
+    uppy.on('complete', (result) => {
+      alert('Fotos enviadas com sucesso!');
+    });
+  </script>
 </body>
 </html>

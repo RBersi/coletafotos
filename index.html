@@ -2,24 +2,35 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Envie suas fotos 📸</title>
-  <!-- Estilos do Uppy -->
+
+  <!-- Estilos do Uppy (via CDN) -->
   <link href="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.css" rel="stylesheet">
-  <!-- Script do Uppy -->
-  <script src="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.js"></script>
-  <!-- Estilo Inline -->
+
+  <!-- Estilo Inline Básico -->
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 50px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #ff6f61;
+      font-size: 2rem;
     }
     #drag-drop-area {
       width: 90%;
       max-width: 500px;
-      margin: auto;
-      border: 1px dashed #ccc;
+      margin: 20px auto;
+      border: 2px dashed #ccc;
       padding: 20px;
+      background-color: #fff;
+      transition: border-color 0.3s ease;
+    }
+    #drag-drop-area:hover {
+      border-color: #ff6f61;
     }
   </style>
 </head>
@@ -27,7 +38,10 @@
   <h1>Envie suas fotos da festa! 🎉</h1>
   <div id="drag-drop-area"></div>
 
-  <!-- Script Inline -->
+  <!-- Script do Uppy (via CDN) -->
+  <script src="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.js"></script>
+
+  <!-- Script Inline para Inicializar o Uppy -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Verifica se o objeto Uppy está disponível
@@ -36,6 +50,7 @@
         return;
       }
 
+      // Inicializa o Uppy
       const uppy = new Uppy({
         debug: true, // Ativa logs no console para depuração
       })
@@ -47,8 +62,13 @@
         })
         .use(Uppy.XHRUpload, { endpoint: 'https://tusd.tusdemo.net/files/' });
 
+      // Exibe uma mensagem quando o upload for concluído
       uppy.on('complete', (result) => {
-        alert('Fotos enviadas com sucesso!');
+        if (result.successful.length > 0) {
+          alert('Fotos enviadas com sucesso!');
+        } else {
+          alert('Erro ao enviar fotos. Tente novamente.');
+        }
         console.log('Uploads:', result.successful);
       });
     });

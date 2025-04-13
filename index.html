@@ -26,7 +26,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const uppy = new Uppy.Core()
+      const uppy = new Uppy({
+        debug: true, // Ativa logs no console para depuração
+      })
         .use(Uppy.Dashboard, {
           inline: true,
           target: '#drag-drop-area',

@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     .use(Uppy.Dashboard, {
       inline: true,
       target: '#drag-drop-area',
-      note: 'Arraste suas fotos aqui ou clique para selecionar',
+      note: 'Arraste ou clique para enviar suas fotos',
       proudlyDisplayPoweredByUppy: false
     })
     .use(Uppy.Tus, { endpoint: 'https://tusd.tusdemo.net/files/' });
 
   uppy.on('complete', (result) => {
     alert('Fotos enviadas com sucesso!');
-    console.log('Uploads completos:', result.successful);
+    console.log('Uploads:', result.successful);
   });
 });

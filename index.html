@@ -5,12 +5,41 @@
   <title>Envie suas fotos 📸</title>
   <link href="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.css" rel="stylesheet">
   <script src="https://releases.transloadit.com/uppy/v3.14.1/uppy.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #drag-drop-area {
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      border: 1px dashed #ccc;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
   <h1>Envie suas fotos da festa! 🎉</h1>
   <div id="drag-drop-area"></div>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const uppy = new Uppy.Core()
+        .use(Uppy.Dashboard, {
+          inline: true,
+          target: '#drag-drop-area',
+          note: 'Arraste ou clique para enviar suas fotos',
+          proudlyDisplayPoweredByUppy: false,
+        })
+        .use(Uppy.XHRUpload, { endpoint: 'https://tusd.tusdemo.net/files/' });
+
+      uppy.on('complete', (result) => {
+        alert('Fotos enviadas com sucesso!');
+        console.log('Uploads:', result.successful);
+      });
+    });
+  </script>
 </body>
 </html>
